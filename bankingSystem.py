@@ -1,4 +1,5 @@
 from clearAndLoading import Loading, Typing
+from getpass import getpass
 from time import sleep
 import random
 import sys
@@ -58,19 +59,29 @@ def welcome():
 def secret_password():
     clearLoad.clear()
 
-    for keyPin, keyBalance, keyNumber in zip(account_pin, account_balance, account_number):
-        message = f"""
-                    {keyPin}:
-                    - Pin = {account_pin[keyPin]}
-                    - Balance = $ {account_balance[keyBalance]}
-                    - Number = {account_number[keyNumber]}"""
-        print(message)
-        # if the output was nothing, then the dictionary is empty (no data has been input)
+    pw = getpass(prompt="Secret Pass >> ")
+    
+    if pw == "hahahihihuhu":
+        clearLoad.loadingAnimation()
 
-    input("\n\n\t\t\t *press ENTER for return")
+        for keyPin, keyBalance, keyNumber in zip(account_pin, account_balance, account_number):
+            message = f"""
+                        {keyPin}:
+                        - Pin = {account_pin[keyPin]}
+                        - Balance = $ {account_balance[keyBalance]}
+                        - Number = {account_number[keyNumber]}"""
+            print(message)
+            # if the output was nothing, then the dictionary is empty (no data has been input)
 
-    # return to the previous function
-    welcome()
+        input("\n\n\t\t\t *press ENTER for return")
+
+        # return to the previous function
+        welcome()
+    else:
+        print("\nWrong Password !")
+        
+        sleep(1)
+        return welcome()
 
 
 def exit_program():
@@ -186,7 +197,7 @@ def login():
     sleep(0.5)
 
     login_name = input("\n\t\tEnter your Name: ").upper()
-    login_pin = int(input("\n\t\tEnter your Account Pin: "))
+    login_pin = int(getpass(prompt="\n\t\tEnter your Account Pin: "))
 
     # check if the bank account is exist
     if login_name in account_pin.keys():
