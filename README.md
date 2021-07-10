@@ -1,6 +1,6 @@
 # Banking System with Python
 
-# How to Run This In Your Local
+### How to Run This On Your Local
 
 * You must have a downloaded python in your computer
 
